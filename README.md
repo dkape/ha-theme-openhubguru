@@ -15,11 +15,13 @@ OLED-High-Tech-Darkmode mit Cyan/Sky-Akzent – die Designsprache von
 ## Installation über HACS
 
 > **Hinweis:** HACS (auch 2.x) lädt Custom Repositories ausschließlich von **GitHub**.
-> Ein reines Gitea-Repo lässt sich dort nicht hinzufügen – dafür wird ein GitHub-Spiegel
-> des Gitea-Repos benötigt (Gitea *Push-Mirror*). Die URL unten ist dann die des Spiegels.
+> Entwickelt wird in Gitea (`code.kapeplus.de/kapeplus.de/ha-theme-openhubguru`); ein Gitea
+> *Push-Mirror* spiegelt jeden Push automatisch nach
+> [github.com/dkape/ha-theme-openhubguru](https://github.com/dkape/ha-theme-openhubguru),
+> von dort lädt HACS. Änderungen daher nur in Gitea, nie direkt auf GitHub committen.
 
 1. HACS → ⋮ → *Benutzerdefinierte Repositories*
-2. URL des GitHub-Spiegels von `code.kapeplus.de/kapeplus.de/ha-theme-openhubguru`, Kategorie **Theme**
+2. URL `https://github.com/dkape/ha-theme-openhubguru`, Kategorie **Theme**
 3. Theme installieren, dann sicherstellen, dass `configuration.yaml` Themes lädt:
 
    ```yaml
@@ -50,4 +52,8 @@ minimale `configuration.yaml` mit `!include_dir_merge_named themes` an und läss
 (`HA_VERSION`, Standard `2026.10.0`) die Konfiguration validieren. Schlägt bei ungültigen
 Theme-Schlüsseln (z. B. unbekannter Modus) fehl.
 
-Design-Herleitung: `docs/Home-Assistant-Theme-Specification.md` im OpenHubGuru-Repo.
+Design-Herleitung: [`docs/Home-Assistant-Theme-Specification.md`](docs/Home-Assistant-Theme-Specification.md).
+
+## Lizenz
+
+[MIT](LICENSE)
