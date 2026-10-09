@@ -148,16 +148,18 @@ openhubguru:
   # ── card-mod (optional, nur aktiv wenn card-mod installiert ist) ──
   # Glassmorphism, Akzent-Glow und schlanke Scrollbars aus der Spec §2.3.
   card-mod-theme: openhubguru
-  card-mod-root-yaml: |
-    .: |
-      app-toolbar, .header {
-        border-bottom: 1px solid #1e293b;
-        backdrop-filter: blur(12px);
-      }
-      ::-webkit-scrollbar { width: 6px; height: 6px; }
-      ::-webkit-scrollbar-track { background: rgba(5, 7, 12, 0.6); }
-      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
-      ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+  # Nur CSS-Strings: card-mod 4.2.1 lädt *-yaml-Theme-Schlüssel über eine
+  # Developer-Tools-Route, die es in HA 2026.10 nicht mehr gibt – YAML bleibt hängen.
+  # Verschachtelte Shadow-Roots (Rundskalen) daher per card_mod in der Karte.
+  card-mod-root: |
+    app-toolbar, .header {
+      border-bottom: 1px solid #1e293b;
+      backdrop-filter: blur(12px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(5, 7, 12, 0.6); }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
   card-mod-card: |
     ha-card {
       background: rgba(18, 26, 43, 0.75);
@@ -189,4 +191,9 @@ openhubguru:
     }
     path.apexcharts-line, .scatterlayer path.js-line {
       filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.55)) drop-shadow(0 0 8px rgba(56, 189, 248, 0.25));
+    }
+  # Modern-Circular-Gauge-Badge: Bogen in der Skalenfarbe.
+  card-mod-badge: |
+    g > path.arc.current {
+      filter: drop-shadow(0 0 4px var(--gauge-color)) drop-shadow(0 0 10px var(--gauge-color));
     }
