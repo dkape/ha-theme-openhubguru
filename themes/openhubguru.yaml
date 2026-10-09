@@ -177,8 +177,16 @@ openhubguru:
     mushroom-shape-icon ha-state-icon {
       filter: drop-shadow(0 0 4px var(--icon-color, var(--primary-color)));
     }
-    /* Graphen (ApexCharts, Plotly): Linien leuchten im Brand-Cyan. Die Serienfarbe
-       steckt dort in Gradients bzw. Inline-Styles und ist per CSS nicht greifbar. */
+    /* Graphen. Sensor-Karte: Linie in --accent-color, Glow in derselben Farbe. */
+    hui-graph-header-footer {
+      filter: drop-shadow(0 0 4px var(--accent-color)) drop-shadow(0 0 10px var(--accent-color));
+    }
+    /* HA-Charts (Statistik, Verlauf) zeichnen auf Canvas, ApexCharts/Plotly haben die
+       Serienfarbe in Gradients bzw. Inline-Styles – per CSS nicht greifbar, daher hier
+       Brand-Cyan. Farbtreuer Glow je Serie: per card_mod in der Karte (überschreibt das). */
+    statistics-chart, state-history-charts {
+      filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.35)) drop-shadow(0 0 6px rgba(56, 189, 248, 0.2));
+    }
     path.apexcharts-line, .scatterlayer path.js-line {
       filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.55)) drop-shadow(0 0 8px rgba(56, 189, 248, 0.25));
     }
