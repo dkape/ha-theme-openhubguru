@@ -14,8 +14,12 @@ OLED-High-Tech-Darkmode mit Cyan/Sky-Akzent – die Designsprache von
 
 ## Installation über HACS
 
+> **Hinweis:** HACS (auch 2.x) lädt Custom Repositories ausschließlich von **GitHub**.
+> Ein reines Gitea-Repo lässt sich dort nicht hinzufügen – dafür wird ein GitHub-Spiegel
+> des Gitea-Repos benötigt (Gitea *Push-Mirror*). Die URL unten ist dann die des Spiegels.
+
 1. HACS → ⋮ → *Benutzerdefinierte Repositories*
-2. URL `https://code.kapeplus.de/kapeplus.de/ha-theme-openhubguru`, Kategorie **Theme**
+2. URL des GitHub-Spiegels von `code.kapeplus.de/kapeplus.de/ha-theme-openhubguru`, Kategorie **Theme**
 3. Theme installieren, dann sicherstellen, dass `configuration.yaml` Themes lädt:
 
    ```yaml
@@ -38,6 +42,12 @@ Scrollbars dazu. Ohne card-mod werden diese Schlüssel ignoriert.
 ```bash
 pip install pyyaml
 python3 scripts/validate_theme.py   # prüft Struktur, hacs.json, Farbwerte, card-mod-Name
+scripts/simulate_hacs_install.sh    # HACS-Install in Wegwerf-Config + echtes HA check_config (Docker)
 ```
+
+`simulate_hacs_install.sh` kopiert `themes/*` wie HACS nach `/config/themes/<repo>/`, legt eine
+minimale `configuration.yaml` mit `!include_dir_merge_named themes` an und lässt Home Assistant
+(`HA_VERSION`, Standard `2026.10.0`) die Konfiguration validieren. Schlägt bei ungültigen
+Theme-Schlüsseln (z. B. unbekannter Modus) fehl.
 
 Design-Herleitung: `docs/Home-Assistant-Theme-Specification.md` im OpenHubGuru-Repo.
