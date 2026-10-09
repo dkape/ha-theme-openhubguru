@@ -167,5 +167,18 @@ openhubguru:
     }
     ha-card:hover {
       border-color: rgba(56, 189, 248, 0.4);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 0 20px -10px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 0 24px -6px rgba(56, 189, 248, 0.35);
+    }
+    /* Icon-Glow in der Zustandsfarbe (wie OpenHubGuru: drop-shadow(var(--st))),
+       nur für aktive Zustände – inaktive Icons bleiben flach. */
+    ha-tile-icon:not([data-state="off"]):not([data-state="unavailable"]):not([data-state="unknown"]):not([data-state="closed"]):not([data-state="idle"]):not([data-state="standby"]):not([data-state="not_home"]) ha-state-icon {
+      filter: drop-shadow(0 0 4px var(--tile-color)) drop-shadow(0 0 10px var(--tile-color));
+    }
+    mushroom-shape-icon ha-state-icon {
+      filter: drop-shadow(0 0 4px var(--icon-color, var(--primary-color)));
+    }
+    /* Graphen (ApexCharts, Plotly): Linien leuchten im Brand-Cyan. Die Serienfarbe
+       steckt dort in Gradients bzw. Inline-Styles und ist per CSS nicht greifbar. */
+    path.apexcharts-line, .scatterlayer path.js-line {
+      filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.55)) drop-shadow(0 0 8px rgba(56, 189, 248, 0.25));
     }
