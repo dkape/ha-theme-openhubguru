@@ -2,8 +2,11 @@ name: validate
 on: [push, pull_request]
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    # LIGHT: ein Python-Skript, kein amd64-Bedarf (siehe shared-pipelines README "Runner-Klassen").
+    runs-on: ${{ vars.CI_RUNNER_LIGHT || 'arm64' }}
     steps:
       - uses: actions/checkout@v4
-      - run: pip install pyyaml
+      # Das Runner-Image ist PEP 668 "externally-managed": ein nacktes `pip install` bricht ab
+      # (daran ist jeder Lauf seit dem Image-Update gescheitert). PyYAML ist meist schon da.
+      - run: python3 -c 'import yaml' 2>/dev/null || python3 -m pip install --break-system-packages pyyaml
       - run: python3 scripts/validate_theme.py
